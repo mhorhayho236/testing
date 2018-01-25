@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name          = 'testing'
-  gem.version = '0.0.4'
+  gem.version = '0.0.5'
   gem.authors       = ['Garen Torikian']
   gem.email         = ['gjtorikian@gmail.com']
   gem.description   = 'Just a test.'
