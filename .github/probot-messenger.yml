@@ -1,6 +1,2 @@
---- 
-services: 
-  - 
-    name: email
-    addresses: 
-      - gjtorikian@users.noreply.github.com
+shared1: will be merged
+shared2: will also be merged
