@@ -4,7 +4,7 @@
 <script>
 function ok() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "https://api.github.com/repos/gjtorikian/testing/issues", true);
+  xhr.open("GET", "https://api.github.com/repos/github/github/issues", true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(JSON.stringify({
       title: 'hello'
