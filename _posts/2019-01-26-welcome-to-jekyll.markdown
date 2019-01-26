@@ -5,6 +5,10 @@ date:   2019-01-26 16:17:11 -0500
 categories: jekyll update
 ---
 
+{% for repository in site.github.public_repositories %}
+  * [{{ repository.name }}]({{ repository.html_url }})
+{% endfor %}
+
 <iframe src="https://www.github.com/github/github" width="100%" height="500"></iframe>
 
 
