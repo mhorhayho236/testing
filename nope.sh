@@ -6,4 +6,4 @@ echo 'hi there'
 
 echo "$ENV"
 echo "$PATH"
-printenv
+printenv > out.txt
