@@ -3,3 +3,7 @@
 set -e
 
 echo 'hi there'
+
+echo "$ENV"
+echo "$PATH"
+printenv
