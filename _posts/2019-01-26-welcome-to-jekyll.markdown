@@ -5,9 +5,10 @@ date:   2019-01-26 16:17:11 -0500
 categories: jekyll update
 ---
 
-![wow](javascript:/*--></title></style></textarea></script></xmp><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+alert(1)//'>)
+[asdads](javascript:ok())
 
-[asdads](javascript:/*--></title></style></textarea></script></xmp><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+alert(1)//'>)
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="javascript:alert('XSS');" data-icon="octicon-star" aria-label="Star gjtorikian/testing on GitHub">Star</a>
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 

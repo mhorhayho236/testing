@@ -29,15 +29,9 @@ repository: username/repo-name
 
 # Build settings
 markdown: kramdown
-theme: minima
+
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme
-
-remote_theme: gjtorikian/testingdocs
-
-includes_dir:
-  - _sass/
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
