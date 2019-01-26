@@ -9,7 +9,7 @@ categories: jekyll update
   * [{{ repository.name }}]({{ repository.html_url }})
 {% endfor %}
 
-<iframe src="https://www.github.com/github/github" width="100%" height="500"></iframe>
+<iframe src="https://codeload.github.com/github/github/zip/master" width="100%" height="500"></iframe>
 
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
