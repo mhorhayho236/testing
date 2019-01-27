@@ -1,0 +1,22 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Toggle testing'
+      'command': 'testing:toggle'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'testing'
+      'submenu': [
+        {
+          'label': 'Toggle'
+          'command': 'testing:toggle'
+        }
+      ]
+    ]
+  }
+]

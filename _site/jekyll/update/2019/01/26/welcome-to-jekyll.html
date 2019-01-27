@@ -1,0 +1,27 @@
+<!html>
+<head>
+<!-- Place this tag in your head or just before your close body tag. -->
+<script>
+function ok() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://api.github.com/repos/github/github/issues", true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(JSON.stringify({
+      title: 'hello'
+  }));
+  xhr.onload = function() {
+    console.log("HELLO")
+    console.log(this.responseText);
+    var data = JSON.parse(this.responseText);
+    console.log(data);
+  }
+}
+</script>
+</head>
+
+<body>
+<p><a href="javascript:ok()">click me</a></p>
+
+<p><a href="https://github.com/gjtorikian/testing/commits?author=&lt;script&gt;alert(document.cookie)&lt;/script&gt;">or me</a></p>
+
+</body>
