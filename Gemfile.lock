@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/gjtorikian/jekyll-include-cache.git
+  revision: 075074372462176787d02f9dbc798649adfe2300
+  specs:
+    jekyll-include-cache (0.1.0)
+      jekyll (~> 3.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -243,7 +250,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
-  jekyll-remote-theme
+  jekyll-include-cache!
 
 BUNDLED WITH
    1.16.6

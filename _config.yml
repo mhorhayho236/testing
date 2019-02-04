@@ -26,12 +26,14 @@ github_username:  jekyll
 
 repository: username/repo-name
 
+remote_theme: gjtorikian/minimal-mistakes
 
 # Build settings
 markdown: kramdown
 
 plugins:
   - jekyll-feed
+  - jekyll-include-cache
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
