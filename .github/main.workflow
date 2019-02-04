@@ -1,9 +1,8 @@
 workflow "New workflow" {
   on = "push"
-  resolves = ["HTTP client"]
+  resolves = ["Create an issue"]
 }
 
-action "HTTP client" {
-  uses = "swinton/httpie.action@02571a073b9aaf33930a18e697278d589a8051c1"
-  args = "[\"GET\", \"https://www.github.com/github/\"]"
+action "Create an issue" {
+  uses = "JasonEtco/create-an-issue@11c8e67a9a77b755021d8349484be7dd2c3092ce"
 }
