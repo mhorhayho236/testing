@@ -17,7 +17,6 @@ os:
 
 compiler:
   - gcc
-  - clang
 
 git:
   depth: 10
