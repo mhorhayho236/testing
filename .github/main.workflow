@@ -1,8 +1,9 @@
-workflow "New workflow" {
-  on = "push"
+workflow "Issue" {
   resolves = ["Create an issue"]
+  on = "issues"
 }
 
 action "Create an issue" {
-  uses = "JasonEtco/create-an-issue@11c8e67a9a77b755021d8349484be7dd2c3092ce"
+  uses = "./actions"
+  secrets = ["GITHUB_TOKEN"]
 }
