@@ -1,0 +1,11 @@
+name: do issue stuff
+on: issue
+jobs:
+  label_issue:
+    name: Issue labeler
+    runs-on: ubuntu-latest
+    steps:
+    - name: label issues
+      uses: ./actions@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
