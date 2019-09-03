@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: label issues
-      uses: ./actions@master
+      uses: gjtorikian/testing/actions@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
