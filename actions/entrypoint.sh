@@ -1,2 +1,2 @@
 #!/bin/sh
-sh -c "/actions/main.js $*"
+sh -c "/actionz/main.js $*"
