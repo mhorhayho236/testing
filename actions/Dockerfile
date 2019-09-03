@@ -7,4 +7,3 @@ COPY . .
 RUN npm install --production
 
 ENTRYPOINT ["/actionz/entrypoint.sh"]
-CMD ["--help"]
