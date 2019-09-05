@@ -1,7 +1,16 @@
-- on_label: desktop
-  create_issue:
-    title: Hey there
-    body: Check this out, @balevine, will this work?
-    at:
-      owner: gjtorikian
-      repo: testing
+labeler:
+  - on_label: desktop
+    create_issue:
+      title: Hey there
+      body: Check this out, @balevine, will this work?
+      at:
+        owner: gjtorikian
+        repo: testing
+closer:
+  - on_label_parent: big-bad-boom
+    body: |
+      Hey there, just letting you know we fixed this problem.
+
+      Thanks so much.
+
+      [/send]
