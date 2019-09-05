@@ -18,7 +18,7 @@ async function run() {
 
     config.labeler.forEach(function(setting) {
       if (setting.on_label == label_name) {
-        octokit.issues({
+        octokit.issues.create({
           owner: setting.create_issue.at.owner,
           repo: setting.create_issue.at.repo,
           title: setting.create_issue.title,
@@ -36,7 +36,7 @@ async function run() {
       console.log(`Using ${setting.on_label_parent}`);
       if (hasLabel(labels, setting.on_label_parent)) {
         try {
-          child_issues = octokit.issues.listForRepo({
+          child_issues = await octokit.issues.listForRepo({
             owner: repository.owner,
             repo: repository.name,
             labels: `child_of_${setting.on_label_parent}`
