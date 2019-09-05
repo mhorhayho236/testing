@@ -41,8 +41,7 @@ async function run() {
             repo: repository.name,
             labels: `child_of_${setting.on_label_parent}`
           });
-          console.log(child_issues);
-          console.log(Object.keys(child_issues));
+          console.log(child_issues.data);
           if (child_issues.length > 0) {
             console.log(`Found ${child_issues.length} child_issues`);
             child_issues.forEach(async function(child_issue) {
