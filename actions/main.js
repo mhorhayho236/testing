@@ -41,17 +41,18 @@ async function run() {
             repo: repository.name,
             labels: `child_of_${setting.on_label_parent}`
           });
+          console.log(child_issues);
           if (child_issues.length > 0) {
             console.log(`Found ${child_issues.length} child_issues`);
-            child_issues.forEach(function(child_issue) {
-              octokit.issues.createComment({
+            child_issues.forEach(async function(child_issue) {
+              await octokit.issues.createComment({
                 owner: repository.owner.login,
                 repo: repository.name,
                 issue_number: child_issue.number,
                 body: setting.body
               });
 
-              octokit.issues.update({
+              await octokit.issues.update({
                 owner: repository.owner.login,
                 repo: repository.name,
                 issue_number: child_issue.number,
