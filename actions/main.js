@@ -29,8 +29,9 @@ async function run() {
   } else if (action == "closed") {
     labels = issue.labels;
     config = await fetchConfig(repository.owner.login, repository.name);
-    console.log(`Closed issues had ${labels}`);
+    console.log(`Closed issues had ${labels.toString()}`);
     config.closer.forEach(function(setting) {
+      console.log(`Using ${setting.on_label_parent}`);
       if (hasLabel(labels, setting.on_label_parent)) {
         child_issues = octokit.issues.list({
           owner: repository.owner,
