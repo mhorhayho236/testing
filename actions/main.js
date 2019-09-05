@@ -7,9 +7,9 @@ const octokit = new github.GitHub(process.env.GITHUB_TOKEN);
 const config_file_path = ".github/labels.yml";
 
 async function run() {
-  const issue = github.context.payload.issue;
-  console.log(issue);
-  if (issue.action == "labeled") {
+  const payload = github.context.payload;
+  const issue = payload.issue;
+  if (payload.action == "labeled") {
     config = await fetchConfig(issue.owner.login, issue.repository.name);
     console.log(config);
   }
