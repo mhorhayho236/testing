@@ -9,7 +9,7 @@ const config_file_path = ".github/labels.yml";
 async function run() {
   const payload = github.context.payload;
   const action = payload.action;
-  const issue = payload.issues;
+  const issue = payload.issue;
   const repository = payload.repository;
 
   if (action == "labeled") {
