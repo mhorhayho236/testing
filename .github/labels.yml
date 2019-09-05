@@ -1,7 +1,7 @@
 - on_label: desktop
   create_issue:
     title: Hey there
-    body: Check this out
+    body: Check this out, @balevine, will this work?
     at:
       owner: gjtorikian
-      repo: testing2
+      repo: testing
