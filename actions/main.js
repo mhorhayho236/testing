@@ -1,23 +1,30 @@
-const core = require("@actions/core");
 const github = require("@actions/github");
 const process = require("process");
-// import * as yaml from "js-yaml";
+const yaml = require("js-yaml").safeLoad;
 
 const octokit = new github.GitHub(process.env.GITHUB_TOKEN);
 
+const config_file_path = ".github/labels.yml";
+
 async function run() {
   const issue = github.context.payload.issue;
-  console.log(issue.number);
 
-  const { data: pullRequest } = await octokit.pulls.get({
-    owner: "octokit",
-    repo: "rest.js",
-    pull_number: 123,
-    mediaType: {
-      format: "diff"
-    }
+  if (issue.action == "labeled") {
+    config = await fetchConfig(issue.owner.login, issue.repository.name);
+    console.log(config);
+  }
+}
+
+async function fetchConfig(owner, repo) {
+  const response = await client.repos.getContents({
+    owner: owner,
+    repo: repo,
+    path: config_file_path,
+    ref: github.context.sha
   });
-  console.log(pullRequest);
+
+  config_contents = Buffer.from(response.data.content, "base64").toString();
+  return yaml(config_contents);
 }
 
 run();

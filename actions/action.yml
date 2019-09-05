@@ -1,0 +1,9 @@
+name: "Issues"
+author: "gjtorikian"
+description: "A GitHub Action with issues."
+runs:
+  using: "docker"
+  image: "Dockerfile"
+branding:
+  icon: "gear"
+  color: "red"

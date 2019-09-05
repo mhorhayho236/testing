@@ -1,8 +1,6 @@
-label1:
-  - example1/**/*
-
-label2: example2/*
-
-label3:
-  - example3/*
-  - example3/**/*.yml
+- on_label: desktop
+  create:
+    issue:
+      title: Hey there
+      body: Check this out
+    at: gjtorikian/testing
