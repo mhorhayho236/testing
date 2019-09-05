@@ -10,11 +10,11 @@ async function run() {
   const payload = github.context.payload;
   const issue = payload.issue;
   if (payload.action == "labeled") {
-    config = await fetchConfig(
-      issue.repository.owner.login,
-      issue.repository.name
-    );
     label_name = issue.label.name;
+    config = await fetchConfig(
+      payload.repository.owner.login,
+      payload.repository.name
+    );
     console.log(config);
     config.forEach(function(setting) {
       if (setting.on_label == label_name) {
