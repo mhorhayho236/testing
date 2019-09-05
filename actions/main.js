@@ -36,11 +36,13 @@ async function run() {
       console.log(`Using ${setting.on_label_parent}`);
       if (hasLabel(labels, setting.on_label_parent)) {
         try {
-          child_issues = await octokit.issues.listForRepo({
+          list_issues_response = await octokit.issues.listForRepo({
             owner: repository.owner.login,
             repo: repository.name,
             labels: `child_of_${setting.on_label_parent}`
-          }).data;
+          });
+          console.log(list_issues_response.data);
+          child_issues = list_issues_response.data;
           if (child_issues.length > 0) {
             console.log(`Found ${child_issues.length} child_issues`);
             child_issues.forEach(async function(child_issue) {
