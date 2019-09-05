@@ -8,9 +8,8 @@ const config_file_path = ".github/labels.yml";
 
 async function run() {
   const payload = github.context.payload;
-  const issue = payload.issue;
   if (payload.action == "labeled") {
-    label_name = issue.label.name;
+    label_name = payload.label.name;
     config = await fetchConfig(
       payload.repository.owner.login,
       payload.repository.name
