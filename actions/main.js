@@ -8,7 +8,8 @@ const config_file_path = ".github/labels.yml";
 
 async function run() {
   const payload = github.context.payload;
-  if (payload.action == "labeled") {
+  const action = payload.action;
+  if (action == "labeled") {
     label_name = payload.label.name;
     config = await fetchConfig(
       payload.repository.owner.login,
@@ -25,6 +26,8 @@ async function run() {
         });
       }
     });
+  } else {
+    console.log(`Wanted a "labeled" event, but got "${action}"`);
   }
 }
 
