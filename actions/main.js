@@ -37,7 +37,7 @@ async function run() {
       if (hasLabel(labels, setting.on_label_parent)) {
         try {
           child_issues = await octokit.issues.list({
-            owner: repository.owner,
+            owner: repository.owner.login,
             repo: repository.name,
             labels: `child_of_${setting.on_label_parent}`
           });
@@ -45,14 +45,14 @@ async function run() {
             console.log(`Found ${child_issues.length} child_issues`);
             child_issues.forEach(function(child_issue) {
               octokit.issues.createComment({
-                owner: repository.owner,
+                owner: repository.owner.login,
                 repo: repository.name,
                 issue_number: child_issue.number,
                 body: setting.body
               });
 
               octokit.issues.update({
-                owner: repository.owner,
+                owner: repository.owner.login,
                 repo: repository.name,
                 issue_number: child_issue.number,
                 state: "closed"
