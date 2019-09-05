@@ -15,7 +15,7 @@ async function run() {
       payload.repository.owner.login,
       payload.repository.name
     );
-    console.log(config);
+
     config.forEach(function(setting) {
       if (setting.on_label == label_name) {
         octokit.issues.create({
