@@ -35,27 +35,31 @@ async function run() {
     config.closer.forEach(function(setting) {
       console.log(`Using ${setting.on_label_parent}`);
       if (hasLabel(labels, setting.on_label_parent)) {
-        child_issues = octokit.issues.list({
-          owner: repository.owner,
-          repo: repository.name,
-          labels: `child_of_${setting.on_label_parent}`
-        });
-        console.log(`Found ${child_issues.length} child_issues`);
-        child_issues.forEach(function(child_issue) {
-          octokit.issues.createComment({
+        try {
+          child_issues = octokit.issues.list({
             owner: repository.owner,
             repo: repository.name,
-            issue_number: child_issue.number,
-            body: setting.body
+            labels: `child_of_${setting.on_label_parent}`
           });
+          console.log(`Found ${child_issues.length} child_issues`);
+          child_issues.forEach(function(child_issue) {
+            octokit.issues.createComment({
+              owner: repository.owner,
+              repo: repository.name,
+              issue_number: child_issue.number,
+              body: setting.body
+            });
 
-          octokit.issues.update({
-            owner: repository.owner,
-            repo: repository.name,
-            issue_number: child_issue.number,
-            state: "closed"
+            octokit.issues.update({
+              owner: repository.owner,
+              repo: repository.name,
+              issue_number: child_issue.number,
+              state: "closed"
+            });
           });
-        });
+        } catch (e) {
+          console.error(e);
+        }
       }
     });
   } else {
