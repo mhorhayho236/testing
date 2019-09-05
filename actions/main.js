@@ -27,7 +27,9 @@ async function run() {
       }
     });
   } else if (action == "closed") {
-    labels = issue.labels;
+    labels = issue.labels.map(function(label) {
+      return label.name;
+    });
     config = await fetchConfig(repository.owner.login, repository.name);
     console.log(`Closed issues had ${labels.toString()}`);
     config.closer.forEach(function(setting) {
