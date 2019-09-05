@@ -36,7 +36,7 @@ async function run() {
       console.log(`Using ${setting.on_label_parent}`);
       if (hasLabel(labels, setting.on_label_parent)) {
         try {
-          child_issues = await octokit.issues.list({
+          child_issues = await octokit.issues.listForRepo({
             owner: repository.owner.login,
             repo: repository.name,
             labels: `child_of_${setting.on_label_parent}`
