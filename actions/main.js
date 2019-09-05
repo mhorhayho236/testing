@@ -32,7 +32,7 @@ async function run() {
     });
     config = await fetchConfig(repository.owner.login, repository.name);
     console.log(`Closed issues had ${labels.toString()}`);
-    config.closer.forEach(function(setting) {
+    config.closer.forEach(async function(setting) {
       console.log(`Using ${setting.on_label_parent}`);
       if (hasLabel(labels, setting.on_label_parent)) {
         try {
