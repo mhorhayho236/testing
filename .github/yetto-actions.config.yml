@@ -15,3 +15,7 @@ close_child_issues:
       Thanks so much.
 
       [/send]
+custom_command:
+  - on: "[/ping on-call]"
+    create_comment: |
+      @SKaLover95, this is your area of expertise, right? Can you help out?
