@@ -1,8 +1,8 @@
-on: issues
-name: do issue stuff
+on: [issues, issue_comment]
+name: Actions
 jobs:
-  label_issue:
-    name: Issue labeler
+  yetto_action:
+    name: Perform Action
     runs-on: ubuntu-latest
     steps:
     - name: label issues
