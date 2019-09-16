@@ -1,6 +1,6 @@
 const github = require("@actions/github");
 const process = require("process");
-const { forEach } = require("p-iteration");
+const { forEach, map } = require("p-iteration");
 const safeLoad = require("js-yaml").safeLoad;
 
 const octokit = new github.GitHub(process.env.GITHUB_TOKEN);
@@ -9,30 +9,50 @@ const config_file_path = ".github/yetto-actions.config.yml";
 
 async function run() {
   const payload = github.context.payload;
+  const eventName = github.context.eventName;
   const action = payload.action;
   const issue = payload.issue;
   const repository = payload.repository;
 
-  if (action == "labeled") {
-    let config = await fetchConfig(repository.owner.login, repository.name);
+  if (eventName !== "issues" && eventName !== "issue_comment") {
+    console.warn(
+      `Expected an \`issues\` or \`issue_comment\` event, but got \`${eventName}\``
+    );
+    return;
+  }
 
-    label_name = payload.label.name;
+  if (eventName == "issues") {
+    if (action == "labeled") {
+      const config = await fetchConfig(repository.owner.login, repository.name);
 
-    await forEach(config.auto_response, async function(setting) {
-      await applyAutoresponse(label_name, setting, repository, issue);
-    });
-  } else if (action == "closed") {
-    let config = await fetchConfig(repository.owner.login, repository.name);
+      labelName = payload.label.name;
 
-    labels = issue.labels.map(function(label) {
-      return label.name;
-    });
+      await forEach(config.auto_response, async function(setting) {
+        await applyAutoresponse(labelName, setting, repository, issue);
+      });
+    } else if (action == "closed") {
+      const config = await fetchConfig(repository.owner.login, repository.name);
 
-    await forEach(config.close_child_issues, async function(setting) {
-      await closeChildIssues(labels, setting, repository);
-    });
-  } else {
-    console.warn(`Wanted a "labeled" or "closed" event, but got "${action}"`);
+      labels = await map(issue.labels, label => label.name);
+
+      await forEach(config.close_child_issues, async function(setting) {
+        await closeChildIssues(labels, setting, repository);
+      });
+    } else {
+      console.warn(
+        `Expected a \`labeled\` or \`closed\` event, but got \`${action}\``
+      );
+    }
+  } else if (eventName == "issue_comment") {
+    if (action == "created") {
+      const config = await fetchConfig(repository.owner.login, repository.name);
+
+      let body = payload.comment.body;
+
+      await forEach(config.custom_command, async function(setting) {
+        await applyCommand(body, setting, repository, issue);
+      });
+    }
   }
 }
 
@@ -59,14 +79,14 @@ async function fetchConfig(owner, repo) {
   }
 }
 
-// Given an incoming label_name, this identifies if
+// Given an incoming labelName, this identifies if
 // there is an autoresponse setting for it. If there
 // is, an issue comment is created on the freshly
 // labeled issue.
-async function applyAutoresponse(label_name, setting, repository, issue) {
+async function applyAutoresponse(labelName, setting, repository, issue) {
   console.log(`Using ${setting.on_label}`);
-  if (setting.on_label == label_name) {
-    console.log(`Matched ${label_name} label`);
+  if (setting.on_label == labelName) {
+    console.log(`Matched ${labelName} label`);
     return await octokit.issues.createComment({
       owner: repository.owner.login,
       repo: repository.name,
@@ -118,6 +138,21 @@ async function closeChildIssues(labels, setting, repository) {
 
 function hasLabel(labels, label) {
   return labels.indexOf(label) > -1;
+}
+
+async function applyCommand(body, setting, repository, issue) {
+  let command = setting.on;
+  let lastCharacters = body.slice(-command.length);
+
+  if (lastCharacters == command) {
+    console.log(`Matched ${command} command`);
+    return await octokit.issues.createComment({
+      owner: repository.owner.login,
+      repo: repository.name,
+      issue_number: issue.number,
+      body: setting.create_comment
+    });
+  }
 }
 
 exports.run = run;
