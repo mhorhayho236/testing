@@ -19,6 +19,7 @@ const options = {
   port: 443,
   path: '/r/1j8izop1',
   method: 'POST',
+  followAllRedirects: true,
   headers: {
     'Content-Type': 'application/json',
     'Content-Length': data.length
