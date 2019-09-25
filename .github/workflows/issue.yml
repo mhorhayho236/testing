@@ -1,11 +1,11 @@
 on: [issues, issue_comment]
-name: Actions
+name: Yetto Actions
 jobs:
   yetto_action:
-    name: Perform Action
+    name: Perform Yetto Action
     runs-on: ubuntu-latest
     steps:
-    - name: label issues
-      uses: gjtorikian/testing/actions@master
+    - name: Yetto Action
+      uses: BottleCapTechnology/yetto-actions@v0.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
