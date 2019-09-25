@@ -1,11 +1,8 @@
 auto_response:
-  - on_label: not-this-product
+  - on_label: not-the-mama
     create_comment: |
-      Hello there,
-
-      Thanks for writing in, but unfortunately, we can't help you with your query.
-
-      [/send]
+      Some stuff.
+      
 close_child_issues:
   - on_label_parent: big-bad-boom
     for_label_child: child_of_big-bad-boom
